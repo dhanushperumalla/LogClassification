@@ -1,6 +1,7 @@
 from processor_regex import classify_with_regex
 from processor_bert import classify_with_bert
 from processor_llm import classify_with_llm
+import os
 
 def classify(logs):
     labels = []
@@ -27,7 +28,9 @@ def classify_csv(input_file):
     df["target_label"] = classify(list(zip(df["source"], df["log_message"])))
 
     # Save the modified file
-    output_file = "output.csv"
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources")
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = os.path.join(output_dir, "output.csv")
     df.to_csv(output_file, index=False)
 
     return output_file

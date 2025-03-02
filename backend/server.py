@@ -12,14 +12,24 @@ app = FastAPI()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],  # Updated to match your frontend URL
+    allow_origins=[
+        "http://localhost:8080",  # Development frontend
+        os.getenv("FRONTEND_URL", "")  # Production frontend
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("app.log"),
+        logging.StreamHandler()
+    ]
+)
 logger = logging.getLogger(__name__)
 
 @app.post("/classify/")
@@ -81,3 +91,9 @@ async def classify_logs(file: UploadFile = File(...)):
                 logger.error("Failed to remove input file: %s", str(e))
     
     return response
+
+# Add this at the bottom of the file
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=False)

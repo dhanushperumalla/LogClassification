@@ -3,6 +3,7 @@ from groq import Groq
 import json
 import re
 import os
+import logging
 
 load_dotenv()
 
@@ -11,6 +12,8 @@ from groq import Groq
 client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),  # This is the default and can be omitted
 )
+
+logger = logging.getLogger(__name__)
 
 def classify_with_llm(log_msg):
     """
@@ -31,10 +34,12 @@ def classify_with_llm(log_msg):
         chat_completion = client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
             model="deepseek-r1-distill-llama-70b",
-            temperature=0.5
+            temperature=0.5,
+            timeout=10
         )
     except Exception as e:
-        return f"Error during chat completion: {e}"
+        logger.error(f"LLM classification error: {e}")
+        return "Unclassified"
 
     content = chat_completion.choices[0].message.content
     match = re.search(r'<category>(.*)<\/category>', content, flags=re.DOTALL)
