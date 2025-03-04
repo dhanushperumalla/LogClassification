@@ -6,7 +6,7 @@ This system provides automated classification of log entries using a multi-tiere
 
 ## 🎥 Demo
 
-https://drive.google.com/file/d/1H7AqQ8wPKdShzYiOtAqvS4mmUh5KR3iG/view?usp=drive_link
+https://github.com/user-attachments/assets/60e90e0a-cef1-4295-ab7d-0c6d53c6c762
 
 ## 🏗️ Architecture
 
