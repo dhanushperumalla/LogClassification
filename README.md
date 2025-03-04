@@ -6,7 +6,7 @@ This system provides automated classification of log entries using a multi-tiere
 
 ## 🎥 Demo
 
-<video src="./public/LogClassifyPro - Intelligent Log Classification.mp4"></video>
+https://github.com/dhanushperumalla/LogClassification/blob/master/public/LogClassifyPro%20-%20Intelligent%20Log%20Classification.mp4
 
 ## 🏗️ Architecture
 
