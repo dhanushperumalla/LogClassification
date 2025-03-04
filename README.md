@@ -4,6 +4,10 @@
 
 This system provides automated classification of log entries using a multi-tiered approach. It combines regular expressions, machine learning, and large language models to accurately categorize logs based on their content and structure. 🤖
 
+## 🎥 Demo
+
+https://github.com/dhanushperumalla/LogClassification/assets/public/LogClassifyPro%20-%20Intelligent%20Log%20Classification.mp4
+
 ## 🏗️ Architecture
 
 The system consists of two main components:
